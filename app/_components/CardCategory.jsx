@@ -12,8 +12,9 @@ const CardCategory = ({ image1, image2, title, description }) => {
                     alt="img-1"
                     className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-in-out opacity-100 group-hover:opacity-0"
                     priority={true}
-                    layout="fill"
                     objectFit="cover"
+                    width={1920}
+                    height={1080}
                     sizes="(max-width: 600px) 100vw, (max-width: 768px) 50vw, 33vw"
                 />
                 <Image
@@ -21,7 +22,8 @@ const CardCategory = ({ image1, image2, title, description }) => {
                     alt="img-2"
                     className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
                     priority={true}
-                    layout="fill"
+                    width={1920}
+                    height={1080}
                     objectFit="cover"
                     sizes="(max-width: 600px) 100vw, (max-width: 768px) 50vw, 33vw"
                 />

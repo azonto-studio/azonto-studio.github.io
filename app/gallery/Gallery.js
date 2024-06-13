@@ -41,7 +41,7 @@ const GalleryImage = React.memo(({ image, index, openImage }) => (
     </div>
 ));
 
-export default function Gallery({ category }) {
+export default  function Gallery({ category }) {
     const [filteredImages, setFilteredImages] = useState([]);
     const [showScroll, setShowScroll] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
