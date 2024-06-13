@@ -1,32 +1,39 @@
 "use client"
-import React, { useState } from 'react';
-import image1 from '../../assets/backgroundsSelected/background1.jpg'
-import image2 from '../../assets/backgroundsSelected/background2.jpg'
-import image3 from '../../assets/backgroundsSelected/background3.jpg'
-import image4 from '../../assets/backgroundsSelected/background4.jpg'
+import React, { useEffect, useState } from 'react';
+
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import Link from 'next/link';
-const CarouselHero2 = () => {
+function CarouselHero({ data }) {
     const [activeIndex, setActiveIndex] = useState(0);
+
+
     const slides = [
         {
-            src: image4,
+            src: data[0].secure_url,
+            width:data[0].width,
+            height:data[0].height,
             label: 'Frumusete si Eleganta, In Fiecare Cadru.',
             description: 'Fiecare fotografie surprinde esenta frumusetii si elegantei, intr-un mod unic si personal.'
         },
         {
-            src: image1,
+            src: data[1].secure_url,
+            width:data[1].width,
+            height:data[1].height,
             label: 'Magia iubirii, capturata in fiecare cadru.',
             description: 'Incarcate de emotie si farmec, aceste cadre imortalizeaza momentele in care inima bate mai tare.'
         },
         {
-            src: image2,
+            src: data[2].secure_url,
+            width:data[2].width,
+            height:data[2].height,
             label: 'Calatorii si amintiri, in cadre.',
             description: 'Fiecare fotografie este o fereastra catre aventuri trecute si amintiri pretioase.'
         },
         {
-            src: image3,
+            src: data[3].secure_url,
+            width:data[3].width,
+            height:data[3].height,
             label: 'Emotii in cadre, Povesti Neimblanzite.',
             description: 'Povesti spuse prin imagini, unde fiecare zambet si fiecare lacrima prind viata.'
         }
@@ -81,6 +88,8 @@ const CarouselHero2 = () => {
                                 priority={index < 4}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 objectFit="cover"
+                                width={slide.width}
+                                height={slide.height}
                             />
                             <div
                                 className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-black bg-fixed opacity-55"></div>
@@ -153,4 +162,6 @@ const CarouselHero2 = () => {
     );
 }
 
-export default CarouselHero2;
+export default CarouselHero;
+
+
