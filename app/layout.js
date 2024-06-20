@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={outfit.className}>
           <ToastContainer />
-          <div className="bg-neutral-900">
+          <div className="bg-neutral-900 max-h-svh">
             <Header />
             <MobileNavigation />
             {children}
