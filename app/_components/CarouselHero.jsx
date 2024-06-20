@@ -82,7 +82,7 @@ function CarouselHero({ data }) {
                         data-twe-carousel-item
                         style={{ backfaceVisibility: 'hidden' }}>
                         <div
-                            className="relative overflow-hidden min-h-screen "
+                            className="relative overflow-hidden min-h-screen"
                             style={{
                                 backgroundPosition: '50%', 
                                 maxHeight: '100vh',
@@ -103,7 +103,7 @@ function CarouselHero({ data }) {
                                 className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-neutral-900 bg-fixed opacity-55"></div>
                         </div>
                         <div
-                            className="absolute md:gap-4 p-1 w-4/5 gap-2 flex flex-col items-center  bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white md:block">
+                            className="absolute md:gap-4 p-1 w-4/5 gap-2 flex flex-col items-center bottom-8 xl:bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white md:block">
                             <h5 className="text-[24px] md:text-5xl font-paris">{slide.label}</h5>
                             <p className='text-[11px] md:text-lg font-manrope'>
                                 {slide.description}
