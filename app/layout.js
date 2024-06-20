@@ -16,14 +16,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={outfit.className}>
+        <div className="bg-neutral-900 grid place-items-center">
           <ToastContainer />
-          <div className="bg-neutral-900 max-h-svh">
+          <div className="bg-neutral-900 xl:max-w-[1275px]">
             <Header />
             <MobileNavigation />
             {children}
             <Footer />
           </div>
-
+        </div>
       </body>
     </html>
   );
