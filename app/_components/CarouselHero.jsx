@@ -90,6 +90,7 @@ function CarouselHero({ data }) {
                                 display: 'flex',
                             
                             }}>
+                                
                             <LazyLoadImage
                                 src={slide.src}
                                 alt="slide"
