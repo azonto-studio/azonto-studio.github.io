@@ -22,7 +22,7 @@ export default async function Home() {
 
 
   return (
-    <div className=" w-full h-[100vh]">  
+    <div className="w-full min-h-screen">  
         <CarouselHero data={backgroundImages.resources} />
     </div>
   );

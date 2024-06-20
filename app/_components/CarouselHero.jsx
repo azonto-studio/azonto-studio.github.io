@@ -78,14 +78,13 @@ function CarouselHero({ data }) {
                 {slides.map((slide, index) => (
                     <div
                         key={index}
-                        className={`relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none ${activeIndex === index ? 'block' : 'hidden'}`}
+                        className={`relative float-left -mr-[100%]  w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none ${activeIndex === index ? 'block' : 'hidden'}`}
                         data-twe-carousel-item
                         style={{ backfaceVisibility: 'hidden' }}>
                         <div
-                            className="relative overflow-hidden "
+                            className="relative overflow-hidden min-h-screen "
                             style={{
                                 backgroundPosition: '50%', 
-                                minHeight: '100vh',
                                 maxHeight: '100vh',
                                 minWidth: '100%', 
                                 display: 'flex',
