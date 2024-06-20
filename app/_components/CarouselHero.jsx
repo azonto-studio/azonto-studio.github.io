@@ -82,10 +82,10 @@ function CarouselHero({ data }) {
                         data-twe-carousel-item
                         style={{ backfaceVisibility: 'hidden' }}>
                         <div
-                            className="relative overflow-hidden min-h-dvh"
+                            className="relative overflow-hidden min-h-svh"
                             style={{
                                 backgroundPosition: '50%', 
-                                maxHeight: '100vh',
+                                maxHeight: '100dvh',
                                 minWidth: '100%', 
                                 display: 'flex',
                             
