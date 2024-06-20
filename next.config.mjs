@@ -16,6 +16,8 @@ const nextConfig = {
         CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     },
 
+   
+
   
 };
 

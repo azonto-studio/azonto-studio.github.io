@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState, useCallback } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowBigUp } from 'lucide-react';
 import Modal from '../_components/ModalImage';
-import Script from 'next/script';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const categories = [
     { name: 'All', slug: 'all', max: 100 },
@@ -13,58 +13,13 @@ const categories = [
     { name: 'Botez', slug: 'botez', folder: 'botez', max: 21 },
     { name: 'Familie', slug: 'familie', folder: 'familie', max: 12 },
 ];
-const GalleryImage = React.memo(({ image, index, openImage }) => (
-  <div className='w-full md:w-1/2 lg:w-1/3' onClick={() => openImage(index)}>
-      <Script
-          id={`preload-image-${index}`}
-          src={image.src}
-          strategy="beforeInteractive"
-      />
-      <Image
-          src={image.src}
-          blurDataURL={image.placeholder}
-          placeholder="blur"
-          priority={index < 3}
-          alt={`img-${index}`}
-          className="object-cover p-1 cursor-pointer"
-          width={image.width}
-          height={image.height}
-          sizes="(max-width: 768px) 100vw,
-                 (max-width: 1200px) 50vw,
-                 33vw"
-          srcSet={`
-                  ${image.src}?w=320 320w,
-                  ${image.src}?w=640 640w,
-                  ${image.src}?w=960 960w,
-                  ${image.src}?w=1280 1280w,
-                  ${image.src}?w=1600 1600w,
-                  ${image.src}?w=1920 1920w,
-                  ${image.src}?w=2560 2560w,
-                  ${image.src}?w=3840 3840w
-              `}
-      />
-  </div>
-));
 
 
-export default  function Gallery({ category }) {
-    const [filteredImages, setFilteredImages] = useState([]);
+
+export default  function Gallery({ category , images }) {
+    const [filteredImages, setFilteredImages] = useState(images);
     const [showScroll, setShowScroll] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-
-    const importImages = useCallback((folder, max) => {
-        const images = [];
-        for (let i = 1; i <= max; i++) {
-            const image = require(`@/assets/gallery/${folder}/${folder} (${i}).jpg`);
-            images.push({
-                src: image.default,
-                placeholder: image.placeholder || '',  
-                width: image.width || 1920,  
-                height: image.height || 1080  
-            });
-        }
-        return images;
-    }, []);
 
     const checkScrollTop = useCallback(() => {
         if (!showScroll && window.pageYOffset > 400) {
@@ -94,34 +49,13 @@ export default  function Gallery({ category }) {
         setSelectedImageIndex((prevIndex) => (prevIndex - 1 + filteredImages.length) % filteredImages.length);
     };
 
-    const shuffle = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    };
 
+ 
     useEffect(() => {
         window.addEventListener('scroll', checkScrollTop);
-        return () => {
-            window.removeEventListener('scroll', checkScrollTop);
-        };
+        return () => window.removeEventListener('scroll', checkScrollTop);
     }, [checkScrollTop]);
 
-    useEffect(() => {
-        if (category === 'all') {
-            const allImages = categories.slice(1).flatMap(cat => importImages(cat.folder, cat.max));
-            setFilteredImages(shuffle(allImages));
-        } else {
-            const selectedCategory = categories.find(cat => cat.slug === category);
-            if (selectedCategory) {
-                setFilteredImages(importImages(selectedCategory.folder, selectedCategory.max));
-            } else {
-                setFilteredImages([]);
-            }
-        }
-    }, [category, importImages]);
 
     return (
         <section className="bg-neutral-900 py-28 cursor-pointer relative">
@@ -141,14 +75,24 @@ export default  function Gallery({ category }) {
             </ul>
 
             <div className="flex flex-row flex-wrap">
-                {filteredImages.map((image, index) => (
-                    <GalleryImage key={index} image={image} index={index} openImage={openImage} />
+                {filteredImages?.map((image, index) => (
+                    <div key={index} className="w-full md:w-1/2 lg:w-1/3" onClick={() => openImage(index)}>
+                        <LazyLoadImage
+                            src={image.secure_url}
+                            alt={`img-${index}`}
+                            key={index}
+                            sizes="(max-width: 600px) 100vw, (max-width: 768px) 50vw, 33vw"
+                            className="block w-full h-full cursor-pointer p-1"
+                            effect="blur"
+                       
+                        />
+                    </div>
                 ))}
             </div>
 
             {selectedImageIndex !== null && (
                 <Modal
-                    image={filteredImages[selectedImageIndex].src}
+                    image={filteredImages[selectedImageIndex]}
                     onClose={closeModal}
                     onNext={showNextImage}
                     onPrev={showPrevImage}

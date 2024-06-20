@@ -1,4 +1,5 @@
 import CarouselHero from "./_components/CarouselHero";
+import CategorySection from "./_components/CategorySection";
 import {v2 as cloudinary} from 'cloudinary';
 
 
@@ -22,8 +23,9 @@ export default async function Home() {
 
 
   return (
-    <div className="w-full min-h-screen">  
+    <div className="w-full min-h-screen bg-neutral-900">  
         <CarouselHero data={backgroundImages.resources} />
+        <CategorySection />
     </div>
   );
 }

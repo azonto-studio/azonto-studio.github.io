@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../../assets/about/about1.jpg';
+import image from '../../assets/about/about3.jpg';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ const About = () => {
 
 
     return (
-        <section className="bg-blueGray-200 -mt-24 py-28">
+        <section className=" -mt-24 py-28 bg-neutral-900">
             <div className="container px-4 items-center">
                 <div className="flex flex-wrap">
                     <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">

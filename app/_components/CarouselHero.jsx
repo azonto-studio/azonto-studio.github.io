@@ -5,7 +5,6 @@ import { Button } from '../../components/ui/button';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Link from 'next/link';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { CldImage } from 'next-cloudinary';
 
 
 function CarouselHero({ data }) {
@@ -82,7 +81,7 @@ function CarouselHero({ data }) {
                         data-twe-carousel-item
                         style={{ backfaceVisibility: 'hidden' }}>
                         <div
-                            className="relative overflow-hidden min-h-svh"
+                            className="relative overflow-hidden"
                             style={{
                                 backgroundPosition: '50%', 
                                 maxHeight: '100dvh',
@@ -90,13 +89,13 @@ function CarouselHero({ data }) {
                                 display: 'flex',
                             
                             }}>
-                                
+
                             <LazyLoadImage
                                 src={slide.src}
                                 alt="slide"
                                 className="block w-full h-full "
                                 effect="blur"
-                                style={{ width: '100%', height: '100%', objectFit: 'conver' }}
+                                style={{ width: '100%', height: '100%' }}
                             />
 
                       
@@ -104,13 +103,8 @@ function CarouselHero({ data }) {
                                 className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-neutral-900 bg-fixed opacity-55"></div>
                         </div>
                         <div
-                            className="absolute md:gap-4 p-1 w-4/5 gap-2 flex flex-col items-center bottom-8 xl:bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white md:block">
-                            <h5 className="text-[24px] md:text-5xl font-paris">{slide.label}</h5>
-                            <p className='text-[11px] md:text-lg font-manrope'>
-                                {slide.description}
-                            </p>
-
-                            <Button className="mt-4 w-32 font-manrope text-white bg-orange-400 hover:scale-90 hover:bg-orange-400 transition-all ease-in-out uppercase tracking-wider">
+                            className="absolute md:gap-4 p-1 w-4/5 gap-2 flex flex-col items-center bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white md:block">
+                            <Button className="mt-4 w-32 md:w-40 font-manrope text-orange-400 bg-transparent bg-neutral-800 border-orange-400 border-2 border-solid hover:scale-90 hover:bg-neutral-800 transition-all ease-in-out uppercase tracking-wider">
                                 <Link href="/gallery/all">
                                     Galerie
                                 </Link>
