@@ -5,36 +5,39 @@ import { Button } from '../../components/ui/button';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Link from 'next/link';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { CldImage } from 'next-cloudinary';
+
+
 function CarouselHero({ data }) {
     const [activeIndex, setActiveIndex] = useState(0);
 
 
     const slides = [
         {
-            src: data[0].secure_url,
-            width: data[0].width,
-            height: data[0].height,
+            src: data[0]?.secure_url,
+            width: data[0]?.width,
+            height: data[0]?.height,
             label: 'Frumusete si Eleganta, In Fiecare Cadru.',
             description: 'Fiecare fotografie surprinde esenta frumusetii si elegantei, intr-un mod unic si personal.'
         },
         {
-            src: data[1].secure_url,
-            width: data[1].width,
-            height: data[1].height,
+            src: data[1]?.secure_url,
+            width: data[1]?.width,
+            height: data[1]?.height,
             label: 'Magia iubirii, capturata in fiecare cadru.',
             description: 'Incarcate de emotie si farmec, aceste cadre imortalizeaza momentele in care inima bate mai tare.'
         },
         {
-            src: data[2].secure_url,
-            width: data[2].width,
-            height: data[2].height,
+            src: data[2]?.secure_url,
+            width: data[2]?.width,
+            height: data[2]?.height,
             label: 'Calatorii si amintiri, in cadre.',
             description: 'Fiecare fotografie este o fereastra catre aventuri trecute si amintiri pretioase.'
         },
         {
-            src: data[3].secure_url,
-            width: data[3].width,
-            height: data[3].height,
+            src: data[3]?.secure_url,
+            width: data[3]?.width,
+            height: data[3]?.height,
             label: 'Emotii in cadre, Povesti Neimblanzite.',
             description: 'Povesti spuse prin imagini, unde fiecare zambet si fiecare lacrima prind viata.'
         }
@@ -95,6 +98,8 @@ function CarouselHero({ data }) {
                                 effect="blur"
                                 style={{ width: '100%', height: '100%', objectFit: 'conver' }}
                             />
+
+                      
                             <div
                                 className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-neutral-900 bg-fixed opacity-55"></div>
                         </div>

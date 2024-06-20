@@ -1,6 +1,4 @@
 import CarouselHero from "./_components/CarouselHero";
-import CategorySection from "./_components/CategorySection";
-import RecentWork from "./_components/RecentWork";
 import {v2 as cloudinary} from 'cloudinary';
 
 

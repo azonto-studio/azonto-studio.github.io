@@ -9,7 +9,7 @@ export default function ModalImage({ image, onClose ,onPrev, onNext}) {
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
             <div className="relative">
                 <Image
-                    src={image.secure_url}
+                    src={image}
                     alt="Selected"
                     className="max-w-full h-[100vh] object-contain cursor-pointer"
                     width={image.width}
