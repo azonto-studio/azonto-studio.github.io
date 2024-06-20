@@ -2,6 +2,7 @@ import React from 'react';
 import CardCategory from './CardCategory';
 
 const CategorySection = ({ categories }) => {
+    console.log(categories);
     return (
         <section className='w-full py-10'>
             <h2 className='mx-4 mt-8 md:text-4xl font-bold md:w-4/5 text-white text-2xl tracking-wider pb-2 border-b border-orange-500 font-manrope'>
@@ -16,8 +17,8 @@ const CategorySection = ({ categories }) => {
                         <CardCategory
                             title={category.title}
                             description={category.description}
-                            image1={category.images.resources[0].secure_url}
-                            image2={category.images.resources[1].secure_url}
+                            image1={category.images?.resources[0]?.secure_url}
+                            image2={category.images?.resources[1]?.secure_url}
                         />
                     </div>
                 ))}

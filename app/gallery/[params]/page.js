@@ -12,7 +12,7 @@ export async function generateStaticParams() {
       params: category.slug, 
     }));
   }
-export default function GalleryCategoryPage({ params }) {
+export default async function GalleryCategoryPage({ params }) {
     const { params: category } = params; 
     return <Gallery category={category} />;
 }

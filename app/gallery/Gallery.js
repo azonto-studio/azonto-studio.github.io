@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowBigUp } from 'lucide-react';
 import Modal from '../_components/ModalImage';
+import Script from 'next/script';
 
 const categories = [
     { name: 'All', slug: 'all', max: 100 },
@@ -12,34 +13,39 @@ const categories = [
     { name: 'Botez', slug: 'botez', folder: 'botez', max: 21 },
     { name: 'Familie', slug: 'familie', folder: 'familie', max: 12 },
 ];
-
 const GalleryImage = React.memo(({ image, index, openImage }) => (
-    <div className='w-full md:w-1/2 lg:w-1/3' onClick={() => openImage(index)}>
-        <Image
-            src={image.src}
-            blurDataURL={image.placeholder}
-            placeholder="blur"
-            priority={index < 3}
-            alt={`img-${index}`}
-            className="object-cover p-1 cursor-pointer"
-            width={image.width}
-            height={image.height}
-            sizes="(max-width: 768px) 100vw, 
-                   (max-width: 1200px) 50vw, 
-                   33vw"
-            srcSet={`
-                    ${image.src}?w=320 320w,
-                    ${image.src}?w=640 640w,
-                    ${image.src}?w=960 960w,
-                    ${image.src}?w=1280 1280w,
-                    ${image.src}?w=1600 1600w,
-                    ${image.src}?w=1920 1920w,
-                    ${image.src}?w=2560 2560w,
-                    ${image.src}?w=3840 3840w
-                `}
-        />
-    </div>
+  <div className='w-full md:w-1/2 lg:w-1/3' onClick={() => openImage(index)}>
+      <Script
+          id={`preload-image-${index}`}
+          src={image.src}
+          strategy="beforeInteractive"
+      />
+      <Image
+          src={image.src}
+          blurDataURL={image.placeholder}
+          placeholder="blur"
+          priority={index < 3}
+          alt={`img-${index}`}
+          className="object-cover p-1 cursor-pointer"
+          width={image.width}
+          height={image.height}
+          sizes="(max-width: 768px) 100vw,
+                 (max-width: 1200px) 50vw,
+                 33vw"
+          srcSet={`
+                  ${image.src}?w=320 320w,
+                  ${image.src}?w=640 640w,
+                  ${image.src}?w=960 960w,
+                  ${image.src}?w=1280 1280w,
+                  ${image.src}?w=1600 1600w,
+                  ${image.src}?w=1920 1920w,
+                  ${image.src}?w=2560 2560w,
+                  ${image.src}?w=3840 3840w
+              `}
+      />
+  </div>
 ));
+
 
 export default  function Gallery({ category }) {
     const [filteredImages, setFilteredImages] = useState([]);

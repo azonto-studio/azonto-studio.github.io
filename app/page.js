@@ -16,45 +16,16 @@ export default async function Home() {
   };
 
   const backgroundImages = await fetchCloudinaryImages('assets/backgroundsSelected');
-  const categoryNunta = await fetchCloudinaryImages('assets/category/nunta');
-  const categoryFamily = await fetchCloudinaryImages('assets/category/family');
-  const categoryBotez = await fetchCloudinaryImages('assets/category/botez');
-  const categoryCununie = await fetchCloudinaryImages('assets/category/cununie');
-  const recentWorks= await fetchCloudinaryImages('assets/recentwork');
 
-  const categoriesData = [
-    {
-      title: 'botez',
-      description: 'Fiecare fotografie surprinde esența frumuseții și eleganței, într-un mod unic și personal.',
-      images: categoryBotez
-    },
-    {
-      title: 'nunta',
-      description: 'Fiecare fotografie surprinde esența frumuseții și eleganței, într-un mod unic și personal.',
-      images: categoryNunta
-    },
-    {
-      title: 'cununie',
-      description: 'Fiecare fotografie surprinde esența frumuseții și eleganței, într-un mod unic și personal.',
-      images: categoryCununie
-    },
-    {
-      title: 'familie',
-      description: 'Fiecare fotografie surprinde esența frumuseții și eleganței, într-un mod unic și personal.',
-      images: categoryFamily
-    }
-  ];
+
+
 
 
 
 
   return (
-    <div className="bg-neutral-900 grid place-items-center">
-        
+    <div className=" w-full h-[100vh]">  
         <CarouselHero data={backgroundImages.resources} />
-        <CategorySection categories={categoriesData} />
-        <RecentWork data={recentWorks.resources}/>
-
     </div>
   );
 }

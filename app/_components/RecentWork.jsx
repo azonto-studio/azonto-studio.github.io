@@ -8,7 +8,7 @@ import ModalImage from './ModalImage';
 
 
 
-export default function RecentWork({data}) {
+export default function RecentWork({ data }) {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
     const openImage = (index) => {
@@ -36,16 +36,14 @@ export default function RecentWork({data}) {
             <div className="px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
                 {data.map((image, index) => (
                     <div key={index} className="relative" onClick={() => openImage(index)}>
-                        <div className="relative h-[250px] sm:h-[350px] md:h-[450px] cursor-pointer">
                             <Image
                                 src={image.secure_url}
                                 alt={`img-${index}`}
-                                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out opacity-100 hover:opacity-75"
-                                priority={index < 4} 
-                                layout="fill"
+                                className="inset-0 w-full h-full object-cover transition-opacity duration-300 ease-in-out opacity-100 hover:opacity-75"
                                 sizes="(max-width: 600px) 100vw, (max-width: 768px) 50vw, 33vw"
+                                width={image.width}
+                                height={image.height}
                             />
-                        </div>
                     </div>
                 ))}
             </div>
