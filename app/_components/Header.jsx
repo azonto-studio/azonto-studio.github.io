@@ -38,7 +38,7 @@ const Header = () => {
                 </ul>
 
 
-                <ul className="flex justify-center gap-2 md:gap-4">
+                <ul className="flex justify-center gap-2 md:gap-4  flex-row items-center   w-20 h-20 md:w-24 md:h-24 xl:w-32 xl:h-32">
                     <li>
                         <a href="#" rel="noreferrer" target="_blank" className="text-white hover:text-orange-500 transition ease-in-out">
                             <span className="sr-only">Facebook</span>
