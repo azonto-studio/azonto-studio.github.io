@@ -20,13 +20,13 @@ export default function ModalImage({ image, onClose ,onPrev, onNext}) {
             <CircleX onClick={onClose} className='absolute top-8 right-8 text-orange-500 z-40' />
 
             <button
-                className="absolute left-1/4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2"
+                className="absolute left-2 xl:left-1/4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2"
                 onClick={onPrev}
             >
                 <ChevronLeft />
             </button>
             <button
-                className="absolute right-1/4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2"
+                className="absolute right-2 xl:right-1/4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2"
                 onClick={onNext}
             >
                 <ChevronRight />
