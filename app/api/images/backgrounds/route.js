@@ -1,3 +1,4 @@
+// app/api/images/backgrounds.js
 import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
@@ -22,4 +23,8 @@ export async function GET() {
       }
     );
   }
+}
+
+export async function generateStaticParams() {
+  return [{ params: {} }];
 }
