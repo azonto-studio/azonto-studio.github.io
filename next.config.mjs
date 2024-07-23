@@ -3,7 +3,6 @@ const nextConfig = {
     images: {
         domains: ['res.cloudinary.com'],
     },
-    output: 'export',
 
     webpack: (config) => {
         config.resolve.fallback = { fs: false };
@@ -18,7 +17,7 @@ const nextConfig = {
     },
 
 
-
+    output: 'standalone',
 
 };
 
