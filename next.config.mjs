@@ -3,6 +3,7 @@ const nextConfig = {
     images: {
         domains: ['res.cloudinary.com'],
     },
+    output: 'export',
 
     webpack: (config) => {
         config.resolve.fallback = { fs: false };
@@ -16,9 +17,9 @@ const nextConfig = {
         CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     },
 
-   
 
-  
+
+
 };
 
 export default nextConfig;
