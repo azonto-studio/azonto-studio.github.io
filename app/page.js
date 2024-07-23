@@ -16,12 +16,6 @@ export default async function Home() {
 
   const backgroundImages = await fetchCloudinaryImages('assets/backgroundsSelected');
 
-
-
-
-
-
-
   return (
     <div className="w-full min-h-screen bg-neutral-900">  
         <CarouselHero data={backgroundImages.resources} />
