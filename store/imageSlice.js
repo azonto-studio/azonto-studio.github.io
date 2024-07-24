@@ -3,22 +3,22 @@ import { createSlice } from '@reduxjs/toolkit';
 const imageSlice = createSlice({
   name: 'images',
   initialState: {
-    backgroundImages: null,
+    backgroundImages: {},
     images: {
-      cununie: null,
-      nunta: null,
-      familie: null,
-      botez: null,
+      cununie: {},
+      nunta: {},   
+      familie: {}, 
+      botez: {}    
     },
   },
   reducers: {
     setBackgroundImages: (state, action) => {
-      state.backgroundImages = action.payload;
+      state.backgroundImages = action.payload; 
     },
     setCategoryImages: (state, action) => {
       const { category, images } = action.payload;
       if (state.images[category] !== undefined) {
-        state.images[category] = images;
+        state.images[category] = images; 
       }
     },
   },

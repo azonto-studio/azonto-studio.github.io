@@ -8,7 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const categories = [
-  { name: 'All', slug: 'all' },
+  { name: 'All', slug: 'all', folder: null },
   { name: 'Nunta', slug: 'nunta', folder: 'nunta', max: 500 },
   { name: 'Cununie', slug: 'cununie', folder: 'cununie', max: 500 },
   { name: 'Botez', slug: 'botez', folder: 'botez', max: 500 },
@@ -23,16 +23,19 @@ export default function Gallery({ category }) {
   const categoryImages = useSelector((state) => state.images.images);
 
   useEffect(() => {
-    console.log('categoryImages:', categoryImages);
-    console.log('category:', category);
-
-    // Ensure categoryImages is defined and is an object
     if (categoryImages && typeof categoryImages === 'object') {
-      const images = category === 'all'
-        ? Object.values(categoryImages).flatMap(category => category.resources || [])
-        : categoryImages[category]?.resources || [];
+      let images = [];
+      if (category === 'all') {
+        images = Object.values(categoryImages).flatMap(cat => 
+          Object.values(cat).map(img => img.default.src) || []
+        );
+      } else {
+        const selectedCategory = categoryImages[category];
+        images = selectedCategory ? 
+          Object.values(selectedCategory).map(img => img.default.src) || [] 
+          : [];
+      }
 
-      console.log('Filtered Images:', images);
       setFilteredImages(shuffle(images));
     } else {
       console.warn('categoryImages is not defined or not an object');
@@ -46,6 +49,11 @@ export default function Gallery({ category }) {
       setShowScroll(false);
     }
   }, [showScroll]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', checkScrollTop);
+    return () => window.removeEventListener('scroll', checkScrollTop);
+  }, [checkScrollTop]);
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -97,10 +105,10 @@ export default function Gallery({ category }) {
       </ul>
 
       <div className="flex flex-row flex-wrap">
-        {filteredImages?.map((image, index) => (
+        {filteredImages?.map((imageSrc, index) => (
           <div key={index} className="w-full md:w-1/2 lg:w-1/3" onClick={() => openImage(index)}>
             <LazyLoadImage
-              src={image.secure_url}
+              src={imageSrc}
               alt={`img-${index}`}
               sizes="(max-width: 600px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="block w-full h-full cursor-pointer p-1"
