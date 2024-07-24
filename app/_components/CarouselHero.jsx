@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Button } from '../../components/ui/button';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Image from 'next/image';
 import Link from 'next/link';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -75,10 +75,12 @@ function CarouselHero({ data }) {
                                 minWidth: '100%',
                                 display: 'flex',
                             }}>
-                            <LazyLoadImage
+                            <Image
                                 src={slide.src}
                                 alt="slide"
                                 className="block w-full h-full"
+                                width={slide.width}
+                                height={slide.height}
                                 effect="blur"
                                 style={{ width: '100%', height: '100%' }}
                             />
