@@ -4,8 +4,6 @@ import Footer from "./_components/Footer";
 import MobileNavigation from "./_components/MobileNavigation";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
-import { Provider } from "react-redux";
-import store from "../store/store";
 import ClientProvider from "@/store/ClientProvider";
 
 const outfit = Outfit({ subsets: ["latin"] });
@@ -22,7 +20,7 @@ export default function RootLayout({ children }) {
       <body className={outfit.className}>
         <div className="bg-neutral-900 grid place-items-center">
           <ToastContainer />
-          <div className="bg-neutral-900 xl:max-w-[1275px]">
+          <div className="bg-neutral-900 flex flex-col items-center xl:ml-20 xl:mr-20">
             <Header />
             <MobileNavigation />
             <ClientProvider>

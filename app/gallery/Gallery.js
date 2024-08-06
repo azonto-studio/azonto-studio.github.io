@@ -1,12 +1,13 @@
 "use client";
-import React, { useEffect, useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { ArrowBigUp } from 'lucide-react';
 import Modal from '../_components/ModalImage';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import { categoryImages } from '../../utils/imageLoader'; 
+import { setCategoryImages } from '../../store/imageSlice';
 const categories = [
   { name: 'All', slug: 'all', folder: null },
   { name: 'Nunta', slug: 'nunta', folder: 'nunta', max: 500 },
@@ -16,31 +17,43 @@ const categories = [
 ];
 
 export default function Gallery({ category }) {
+  const dispatch = useDispatch();
   const [filteredImages, setFilteredImages] = useState([]);
   const [showScroll, setShowScroll] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const categoryImages = useSelector((state) => state.images.images);
+  const categoryImagesFromStore = useSelector((state) => state.images.images);
+
+ 
 
   useEffect(() => {
-    if (categoryImages && typeof categoryImages === 'object') {
+    Object.keys(categoryImages).forEach((category) => {
+      dispatch(setCategoryImages({ category, images: categoryImages[category] }));
+    });
+  }, [dispatch]);
+
+
+  useEffect(() => {
+    if (categoryImagesFromStore && typeof categoryImagesFromStore === 'object') {
       let images = [];
       if (category === 'all') {
-        images = Object.values(categoryImages).flatMap(cat => 
+        images = Object.values(categoryImagesFromStore).flatMap(cat => 
           Object.values(cat).map(img => img.default.src) || []
         );
       } else {
-        const selectedCategory = categoryImages[category];
+        const selectedCategory = categoryImagesFromStore[category];
         images = selectedCategory ? 
           Object.values(selectedCategory).map(img => img.default.src) || [] 
           : [];
       }
 
       setFilteredImages(shuffle(images));
+      setIsLoading(false); 
     } else {
       console.warn('categoryImages is not defined or not an object');
     }
-  }, [category, categoryImages]);
+  }, [category, categoryImagesFromStore]);
 
   const checkScrollTop = useCallback(() => {
     if (!showScroll && window.pageYOffset > 400) {
@@ -87,6 +100,14 @@ export default function Gallery({ category }) {
     }
     return shuffledArray;
   };
+
+  if (isLoading) {
+    return (
+      <span className="w-full h-[100vh] flex flex-col items-center rounded-full border-3 border-solid border-white border-t-transparent border-l-transparent relative box-border animate-spin">
+        <span className="sr-only">Loading...</span>
+      </span>
+    );
+  }
 
   return (
     <section className="bg-neutral-900 py-28 cursor-pointer relative">

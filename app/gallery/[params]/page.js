@@ -14,6 +14,5 @@ export async function generateStaticParams() {
   }
 export default function GalleryCategoryPage({ params }) {
     const { params: category } = params; 
-    console.log('category:', category);
     return <Gallery category={category} />;
 }
